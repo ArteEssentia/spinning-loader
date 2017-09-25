@@ -1,0 +1,154 @@
+@charset "utf-8";
+/* CSS Document */
+
+/* include both padding and border in the box dimensions */
+* {
+	box-sizing: border-box;
+}
+
+/* set the overall font-type and colors */
+body {
+	font-family: Verdana;
+	line-height: 1.5em;
+	background: #99cc99;
+	color: #ffffff;
+}
+
+/* set the dimensions of the content area */
+.wrapper {
+	max-width: 50rem;
+	width: 100%;
+	margin: 5rem auto;
+	text-align: center;
+}
+
+/* style the loading text */
+h1.loading {
+	font-size: 3em;
+	font-weight: 400;
+}
+
+/*** below are all styles needed to animate the three dots ***/
+
+/* make all span-tags with a class that starts with 'dot_' invisible */
+span[class^='dot_']{
+	opacity: 0;
+}
+
+/* link the different dot-animations to their respective span classes */
+/* all three animations last 2 seconds */
+.dot_one {
+	animation: dot_one 2s infinite linear;
+}
+
+.dot_two {
+	animation: dot_two 2s infinite linear;
+}
+
+.dot_three {
+	animation: dot_three 2s infinite linear;
+}
+
+/* define the dot-animations */
+/* dot one is appears after 25% of the two seconds, so after 0.5 seconds */
+/* because we set a key-frame at 15% where opacity is still zero, ... */
+/* ... the appearance lasts 10% or 0.2 seconds */
+@keyframes dot_one {
+	0%{
+		opacity: 0;
+	}
+	15%{
+		opacity: 0;
+	}
+	25% {
+		opacity: 1;
+	}
+
+	100%{
+		opacity: 1;
+	}
+}
+
+/* dot two appears after 50% of the two seconds, so after one second */
+@keyframes dot_two {
+	0%{
+		opacity: 0;
+	}
+	40%{
+		opacity: 0;
+	}
+	50% {
+		opacity: 1;
+	}
+
+	100%{
+		opacity: 1;
+	}
+}
+
+/* dot three appears after 75% of the two seconds, so after 1.5 seconds */
+@keyframes dot_three {
+	0%{
+		opacity: 0;
+	}
+	65%{
+		opacity: 0;
+	}
+	75% {
+		opacity: 1;
+	}
+
+	100%{
+		opacity: 1;
+	}
+}
+
+/*** below we turn to the actual spinning circles ***/
+
+/* position the loader */
+.loader {
+	position: relative;
+	width: 6rem;
+	height: 6rem;
+	margin: 6rem auto;
+}
+
+/* before is the inner circle */
+/* after is the outer donut */
+.loader:before, .loader:after {
+	position: absolute;
+	top: 50%;
+	left: 30%;
+	border-radius: 50%; /* a radius of 50% create a full circle */
+	border-style: solid;
+	border-top-color: white; /* by having alternate color per side, we create arcs */
+	border-right-color: #669966;
+	border-bottom-color: white;
+	border-left-color: #669966;
+	content: '';
+	transform: translate(-50%, -50%); 
+	animation: rotate 1.5s infinite ease-in-out; /* animate for 1.5 secs and keep doing so */
+}
+
+/* specific inner circle styling */
+.loader:before {
+	border-width: 3vh; /* width = 3/100 of the viewport height */
+	animation-direction: reverse;
+}
+
+/* specific outer donut styling */
+.loader:after {
+	width: 10vh; /* diameter is 10/100 of the viewport height */
+	height: 10vh;
+	border-width: 2.5vh; /* by specifying a small border size, we get a donut */
+}
+
+/* define the animation */
+@keyframes rotate {
+	0% {
+		transform: translate(-50%, -50%) rotate(0);
+	}
+	100% {
+		transform: translate(-50%, -50%) rotate(360deg);
+	}
+}
