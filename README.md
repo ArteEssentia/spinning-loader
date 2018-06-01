@@ -19,4 +19,4 @@ The loader is styled using both :before and :after and is also animated with css
 
 The CSS file is heavily commented to explain the different rules.
 
-## [Take a look at the live working version of this demo](https://arteessentia.github.io/spinning-loader/)
+## [Take a look at the live working version of this demo](https://VincentKlijn.github.io/spinning-loader/)
